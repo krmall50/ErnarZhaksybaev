@@ -1,4 +1,4 @@
-package main
+package Library
 
 import "fmt"
 
@@ -9,19 +9,15 @@ type Book struct {
 	IsBorrowed bool
 }
 
-func silly() {
-	fmt.Println("helo")
-}
-
 type Library struct {
 	Books map[string]Book
 }
 
-func (l *Library) addBook(book Book) {
+func (l *Library) AddBook(book Book) {
 	l.Books[book.ID] = book
 	fmt.Println("Book added: " + book.Title)
 }
-func (l *Library) borrowBook(id string) {
+func (l *Library) BorrowBook(id string) {
 	book, exists := l.Books[id]
 	if exists && !book.IsBorrowed {
 		book.IsBorrowed = true
@@ -33,7 +29,7 @@ func (l *Library) borrowBook(id string) {
 		fmt.Println("Book is not found.")
 	}
 }
-func (l *Library) returnBook(id string) {
+func (l *Library) ReturnBook(id string) {
 	book, exists := l.Books[id]
 	if exists && book.IsBorrowed {
 		book.IsBorrowed = false
@@ -52,4 +48,5 @@ func (l *Library) ListBooks() {
 			fmt.Printf("ID: %s, Title: %s, Author: %s\n", book.ID, book.Title, book.Author)
 		}
 	}
+
 }
